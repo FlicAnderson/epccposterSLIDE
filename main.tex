@@ -1,6 +1,6 @@
 % Ref: https://www.overleaf.com/latex/templates/emory-poster-template/skpfmpxjnqdh
 
-\documentclass[25pt, a3paper, landscape, margin=10mm, innermargin=25mm, blockverticalspace=25mm, subcolspace=28mm, dvipsnames]{tikzposter} % you need to leave in dvipsnames or else it undoes the orange edge colour??
+\documentclass[25pt, a0paper, landscape, margin=10mm, innermargin=25mm, blockverticalspace=20mm, subcolspace=28mm, dvipsnames]{tikzposter} % you need to leave in dvipsnames or else it undoes the orange edge colour??
 
 \usepackage[T1]{fontenc}
 \usepackage{helvet}
@@ -11,6 +11,7 @@
 \usepackage{amssymb}
 \usepackage{mathrsfs}
 \usepackage{graphicx}
+\usepackage{tcolorbox}
 \usepackage{adjustbox}
 \usepackage{enumitem}
 \usepackage[backend=bibtex,style=numeric, citestyle=ieee]{biblatex}
@@ -60,15 +61,10 @@
 % Ref: https://tex.stackexchange.com/questions/309713/modify-font-style-in-title-of-tikzposter
 \settitle{ \centering
 \vbox{
-    %\@titlegraphic \\[\TP@titlegraphictotitledistance] \centering
-    \color{titlefgcolor} {\sffamily \bfseries \huge  \textsc{\@title} \par}
-    \color{universityred} {\sffamily \bfseries \huge \subtitle}   
-    \vspace*{0.5em}
-    \begin{flushleft}
-    {\color{titlefgcolor} {\sffamily \huge \@author}
-    \hspace{1em}
-    {\sffamily \LARGE \@institute \par}}
-    \end{flushleft}
+    \@titlegraphic \\[\TP@titlegraphictotitledistance] 
+    \color{titlefgcolor} {\sffamily \bfseries \huge \textsc \@title \par}
+    \vspace{1em}
+    \color{universityred} {\sffamily \bfseries \huge \subtitle \par}   
 }
 }
 \makeatother
@@ -77,7 +73,7 @@
 \makeatletter
 \def\title#1{\gdef\@title{\scalebox{\TP@titletextscale}{%
 			\begin{minipage}[t]{\linewidth}
-				%\centering
+				\centering
 				#1
 			\par
 				\vspace{0.5em}
@@ -87,26 +83,24 @@
 
 % Ref: https://tex.stackexchange.com/questions/263563/add-logos-beyond-the-title-tikzposter
 %\title{\parbox{\linewidth}{Do Research Software Developer Personas Exist? Are *YOU* an RS-10X? \\ Identifying Distinct Developer/Repository Interaction Types by Mining GitHub Data}}
-\title{\parbox{\linewidth}{Do Research Software Developer Personas Exist? Are *YOU* an RS-10X?}}
+\title{\parbox{\linewidth}{\fontseries{bx}\selectfont {\fontsize{98}{98}\selectfont {Identifying Research Software Developer Personas \\Could Create Better RS Developers. Are *YOU* an RS-10X?}}}}
 \newcommand{\subtitle}{Identifying Distinct Developer/Repository Interaction Types by Mining GitHub Data}
-\author{\textbf{Felicity `Flic' Anderson\textsuperscript{$\dagger$}}, Julien Sindt\textsuperscript{$\dagger$} and Neil Chue Hong\textsuperscript{$\dagger$}}
-\institute{\textsuperscript{$\dagger$}EPCC, University of Edinburgh}
 %\titlegraphic{\includegraphics{epcclogo.png}}
+
+\author{\textbf{Felicity `Flic' Anderson\textsuperscript{$\dagger$}}, Dr. Julien Sindt\textsuperscript{$\dagger$} and Prof. Neil Chue Hong\textsuperscript{$\dagger$}}
+\institute{\textsuperscript{$\dagger$}EPCC, University of Edinburgh}
 
 \makeatletter
 \newcommand\insertlogoi[2][]{\def\@insertlogoi{\includegraphics[#1]{#2}}}
-%\newcommand\insertlogoi[2][]{\def\@insertlogoi{\hspace*{0.5in}\includegraphics[#1]{#2}}}
 \newcommand\insertlogoii[2][]{\def\@insertlogoii{\includegraphics[#1]{#2}}}
-%\newcommand\insertlogoii[2][]{\def\@insertlogoii{\hspace*{-7.5in}\includegraphics[#1]{#2}}}
-%\newcommand\insertlogoiii[2][]{\def\@insertlogoiii{\includegraphics[#1]{#2}}}
 \newlength\LogoSep
 \setlength\LogoSep{0pt}
 
-\insertlogoi[width=13cm]{informaticsUoE.png}
-\insertlogoii[width=14cm]{epcclogo.png}
+%\insertlogoi[width=90mm]{informaticsUoE.png}
+%\insertlogoii[width=80mm]{epcclogo.png}
 %\insertlogoii[width=15cm]{EpccANDEmailQRsidebyside.png}
 
-\renewcommand\maketitle[1][width=800mm]{  % #1 keys
+\renewcommand\maketitle[1][width=1115mm]{  % #1 keys
 	\normalsize
 	\setkeys{title}{#1}
 	% Title dummy to get title height
@@ -148,6 +142,23 @@
 }
 \makeatother
 
+\makeatletter
+\renewenvironment{tikzfigure}[1][]{
+  \def \rememberparameter{#1}
+  \vspace{10pt}
+  \refstepcounter{figurecounter}
+  \begin{center}
+  }{
+    \singlespacing
+    \ifx\rememberparameter\@empty
+    \else %nothing
+    \\[10pt]
+    {\huge Fig.~\thefigurecounter: \rememberparameter}
+    \fi
+  \end{center}
+}
+\makeatother
+
 % begin document
 \begin{document}
 %\useblockstyle{Basic}
@@ -155,59 +166,95 @@
 
 %\begin{columns}\column{.45}
 
-\block{}{
+\block[linewidth=8pt]{}{
     \vspace{1em}
     
-    {\fontsize{75}{75}\selectfont
-    Using \textbf{assignment and contributions data} \\ to look for Research Software \textbf{'superstar' developers}... \par}  
-            % via https://tex.stackexchange.com/a/499070
-    
-    \vspace{2em}
+    % {\fontsize{70}{70}\selectfont
+    % Using \textbf{assignment and contributions data} to identify \textbf{'superstar' developers}... \par}  
+    %         % via https://tex.stackexchange.com/a/499070
+    % \hline
+    % \vspace{2em}
 
     \begin{multicols}{2}   
 % \block{1: Research Goals \& Methods}{
     
-    {\fontsize{70}{70}\selectfont 
-        Mining \textbf{GitHub} repository data
-        \vspace{1em}
-
-        \textbf{Issue Tickets} / \textbf{Pull Requests} in 10 larger RS repositories 
-        \vspace{1em}
-
-        % \hspace{1em} Does \textbf{Assignment} \thickapprox  \textit{responsibility}?  
-
-        % \hspace{1em} Do \textbf{Commits} \thickapprox \textit{activity}? 
+    {\fontsize{73}{73}\selectfont 
+    Mining GitHub repositories \textbf{assignment data} and \textbf{commit contributions} to identify \textbf{`superstar' developers}...} \par
         
-        % \begin{tikzfigure}[]
-        %     \includegraphics[width=0.80\linewidth]{AssignmentCategories.jpg}
-        % \end{tikzfigure} 
-
-%}
-%\block{2: (Some) Results}{
-        \begin{tikzfigure}[]
-        %\setlength{\belowcaptionskip}{-8pt}
-            \includegraphics[width=0.9\linewidth]{DistributionOfAssignmentTypes.jpg}
-        \end{tikzfigure}
-    %{\fontsize{70}{70}\selectfont 
-
-    \begin{tikzfigure}[]
-        %\setlength{\belowcaptionskip}{-8pt}
-        \includegraphics[width=0.9\linewidth]{AverageCommitsByCategory.jpg}
-    \end{tikzfigure}
+    \vspace{3em}
+        
+    {\fontsize{68}{68}\selectfont 
+        \textbf{Issue Tickets} / \textbf{Pull Requests} in 10 larger RS repositories \par
     
-    Only $\sim$20\% assigned to BOTH features...
+    \begin{tcolorbox}[colframe=white,colback=epccnavy!08, linewidth=0.6*linewidth]{   
+        \leftskip1.5cm\relax
+        \rightskip1.5cm\relax
+        
+        Only \textbf{$\sim$20\%} of all developers in larger RS repositories are assigned \textbf{BOTH} feature types.
     
-    \vspace{0.20em}
-    ... But their commit averages are \textit{\textbf{much higher}...}\par 
+        \vspace*{0.40em}
+        
+        But their commit averages are \textit{\textbf{much higher}...} \par
+        \leftskip0cm\relax
+        \rightskip0cm\relax
+    }
+    \vspace{0.6em}
+    \textbf{Foundations of a RS-10x developer persona?}
+    \end{tcolorbox}\par
+
+    \vspace{0.5em}
+    \textit{Find out at my poster!} \par
+
 
     \vspace{1em}
-    %\hspace{1em} 
-    \textbf{Birth of an RS-10x developer persona?}
+
+    Future work \textbf{expanding developer properties}:  
+    \vspace{0.25em}
+    \begin{itemize}
+    \setlength{\itemindent}{1em}
+    \setlength\itemsep{-0.05em}
+         \item opener/closer behaviours?  
+         \item which files touched in commits?  
+     \end{itemize}}
+     \par
+
+     \vspace{3em}
     
-    \vspace{0.5em}
-    \textit{Find out at my poster!}
+    \columnbreak %-----------------------------%
+
+    {\fontsize{68}{68}\selectfont 
+    
+    \begin{tikzfigure}[Exploring developer impact using item assignment \\ and contributions data in 10 RS repositories]
+        %\setlength{\belowcaptionskip}{-8pt}
+        \includegraphics[width=0.85\linewidth]{AverageCommitsByCategory.jpg}
+    \end{tikzfigure}  
+
+    \vspace*{1em}
+
+    \textbf{Personas may explain developer influences} on:  
+    %\vspace{0.25em}
+    \begin{itemize}
+    \setlength{\itemindent}{1em}
+    \setlength\itemsep{-0.15em}
+         \item software quality metrics   
+         \item project team composition    
+         \item effectiveness of resulting RS   
+     \end{itemize}
+     \par
+
+     \vspace*{0.7em}
+    
     }
+    
     \end{multicols}
 }
+
+
+\block[linewidth=3pt]{}{
+{\color{titlefgcolor}{\sffamily \huge {\textbf{Felicity `Flic' Anderson\textsuperscript{$\dagger$}}, Dr. Julien Sindt\textsuperscript{$\dagger$} and Prof. Neil Chue Hong\textsuperscript{$\dagger$}}
+%\hspace{1em}
+{\sffamily \LARGE {\textsuperscript{$\dagger$}EPCC, University of Edinburgh}} \par}}
+}
+
 %\end{columns}
 \end{document}
