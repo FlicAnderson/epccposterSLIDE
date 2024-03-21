@@ -1,6 +1,6 @@
 % Ref: https://www.overleaf.com/latex/templates/emory-poster-template/skpfmpxjnqdh
 
-\documentclass[25pt, a3paper, landscape, margin=10mm, innermargin=15mm, blockverticalspace=15mm, subcolspace=8mm, dvipsnames]{tikzposter} % you need to leave in dvipsnames or else it undoes the orange edge colour??
+\documentclass[25pt, a3paper, landscape, margin=10mm, innermargin=25mm, blockverticalspace=25mm, subcolspace=28mm, dvipsnames]{tikzposter} % you need to leave in dvipsnames or else it undoes the orange edge colour??
 
 \usepackage[T1]{fontenc}
 \usepackage{helvet}
@@ -17,10 +17,12 @@
 \usepackage{xpatch}
 \usepackage{xcolor}
 \usepackage{multicol}
+\usepackage{setspace}
 \usepackage{lipsum}
 
-\setlength{\columnsep}{2.5cm}
+\setlength{\columnsep}{3.5cm}
 %\setlength{\columnseprule}{1mm}
+\onehalfspacing
 \pagecolor{Dandelion}
 
 % Ref: https://latex-cookbook.net/poster/
@@ -100,8 +102,8 @@
 \newlength\LogoSep
 \setlength\LogoSep{0pt}
 
-\insertlogoi[width=14cm]{informaticsUoE.png}
-\insertlogoii[width=15cm]{epcclogo.png}
+\insertlogoi[width=13cm]{informaticsUoE.png}
+\insertlogoii[width=14cm]{epcclogo.png}
 %\insertlogoii[width=15cm]{EpccANDEmailQRsidebyside.png}
 
 \renewcommand\maketitle[1][width=800mm]{  % #1 keys
@@ -151,67 +153,62 @@
 %\useblockstyle{Basic}
 \maketitle
 
-\begin{columns}\column{.45}
+%\begin{columns}\column{.45}
 
-\block{0: Research Context}{
+\block{}{
     \vspace{1em}
-    {\fontsize{60}{60}\selectfont 
-    %\vspace{1em}
-    \begin{itemize}
-        \item What is \textbf{Research Software}? Why is it often so bad?
-        \vspace{1em}
-        \item What are development practices in 'typical' real world RS projects?
-        \vspace{1em}
-        \item Are there differing `clusters' of practices?
-        \vspace{1em}
-        \item Can we identify those clusters as  RS Personas?
-    \end{itemize}
-    \vspace{1em}
-    }
-    {\fontsize{70}{70}\selectfont
-    \textbf{Use assignment and contributions data to look for RS 'superstar' developers...}  
-    %\vspace{1em}
-    }        % via https://tex.stackexchange.com/a/499070
-} 
-\block{1: Research Goals \& Methods}{
-\begin{multicols}{2}
-    {\fontsize{60}{60}\selectfont 
+    
+    {\fontsize{75}{75}\selectfont
+    Using \textbf{assignment and contributions data} \\ to look for Research Software \textbf{'superstar' developers}... \par}  
+            % via https://tex.stackexchange.com/a/499070
+    
+    \vspace{2em}
+
+    \begin{multicols}{2}   
+% \block{1: Research Goals \& Methods}{
+    
+    {\fontsize{70}{70}\selectfont 
         Mining \textbf{GitHub} repository data
         \vspace{1em}
 
-        Focusing on Issue Tickets / Pull Requests in 10 largeish repos 
+        \textbf{Issue Tickets} / \textbf{Pull Requests} in 10 larger RS repositories 
         \vspace{1em}
 
-        Assignment \thickapprox  \textit{'responsibility'}  
+        \hspace{1em} Does \textbf{Assignment} \thickapprox  \textit{responsibility}?  
 
-        Commits \thickapprox \textit{'activity'} 
+        \hspace{1em} Do \textbf{Commits} \thickapprox \textit{activity}? 
         
-        \begin{tikzfigure}[]
-            \includegraphics[width=0.85\linewidth]{AssignmentCategories.jpg}
-        \end{tikzfigure}
-} 
-\end{multicols}
-}
+        % \begin{tikzfigure}[]
+        %     \includegraphics[width=0.80\linewidth]{AssignmentCategories.jpg}
+        % \end{tikzfigure} 
 
-\column{.55}
-\block{2: (Some) Results}{
+%}
+%\block{2: (Some) Results}{
         \begin{tikzfigure}[]
         %\setlength{\belowcaptionskip}{-8pt}
-            \includegraphics[width=0.55\linewidth]{DistributionOfAssignmentTypes.jpg}
+            \includegraphics[width=0.9\linewidth]{DistributionOfAssignmentTypes.jpg}
         \end{tikzfigure}
-    {\fontsize{60}{60}\selectfont 
-    Only $\sim$20\% of devs assigned to BOTH tickets \& PRs... 
+    %{\fontsize{70}{70}\selectfont 
 
     \begin{tikzfigure}[]
         %\setlength{\belowcaptionskip}{-8pt}
-        \includegraphics[width=0.55\linewidth]{AverageCommitsByCategory.jpg}
+        \includegraphics[width=0.9\linewidth]{AverageCommitsByCategory.jpg}
     \end{tikzfigure}
     
-    ... But their commit numbers are higher... 
+    Only $\sim$20\% assigned to BOTH Issue Tickets \\
+    \underline{and} Pull Requests... 
     
+    \vspace{0.20em}
+    ... But their commit numbers are \textit{much higher...}\par 
+
     \vspace{1em}
-    \textbf{Find out more at my poster!}
+    %\hspace{1em} 
+    \textbf{Birth of an RS-10x developer persona?}
+    
+    \vspace{0.5em}
+    \textit{Find out at my poster!}
     }
+    \end{multicols}
 }
-\end{columns}
+%\end{columns}
 \end{document}
