@@ -1,1 +1,2 @@
-![epccposter_SLIDE 2024-03-21_1900-1](https://github.com/FlicAnderson/epccposterSLIDE/assets/5812129/d1882897-cb75-4570-b6c1-c23c4dd01622)
+
+<img width="705" alt="image" src="https://github.com/FlicAnderson/epccposterSLIDE/assets/5812129/424e455e-4eac-463e-baf4-1a74073eaad4">
